@@ -20,7 +20,7 @@ export FABRIC_BIN=$(cd "$DIR"/../../../build/bin && pwd)
 export SCRIPT_PATH=$(cd "$DIR"/../../../scripts && pwd)
 export FABRIC_CFG_PATH=$(cd "$DIR"/../Org1/peer0 && pwd)
 
-. "$SCRIPT_PATH"/utils/log-utils.sh
+. "$SCRIPT_PATH/utils/log-utils.sh"
 
 logInfo "Config channel:" mychannel
 "$SCRIPT_PATH"/channel.sh config -f mychannel.ini

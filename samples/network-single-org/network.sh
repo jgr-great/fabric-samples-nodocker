@@ -38,7 +38,7 @@ function config() {
   checkSuccess
 }
 
-function start() {
+function startNetwork() {
   logInfo "Start organization nodes:" Org1
   "$SCRIPT_PATH"/peer.sh startorg -d Org1
   checkSuccess
@@ -51,9 +51,15 @@ function start() {
   checkSuccess
   sleep 3
   supervisorctl status
+}
+
+function createChannel() {
   cd "$DIR/channel-mychannel" && "./create.sh"
   checkSuccess
   sleep 2
+}
+
+function installChaincode() {
   cd "$DIR/chaincode-tps" && "./install.sh"
   checkSuccess
 }
@@ -82,11 +88,11 @@ function usage() {
 COMMAND=$1
 case $COMMAND in 
   up)
-    config && start ;;
+    config && startNetwork && createChannel && installChaincode ;;
   config)
     config ;;
   start)
-    start ;;
+    config && startNetwork ;;
   down)
     down ;;
   *) usage;;

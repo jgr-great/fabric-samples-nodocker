@@ -173,10 +173,10 @@ function create {
     org_mspid=$(readValue "org.mspid")
     ch_name=$(readValue "channel.name")
 
-    checkfileexist $tx_file
-    checkfileexist $orderer_tls_file
-    checkfileexist $org_tls_file
-    checkdirexist $admin_msp_dir
+    checkfileexist "$tx_file"
+    checkfileexist "$orderer_tls_file"
+    checkfileexist "$org_tls_file"
+    checkdirexist "$admin_msp_dir"
 
     export CORE_PEER_TLS_ENABLED=true
     export CORE_PEER_MSPCONFIGPATH=$admin_msp_dir
@@ -187,9 +187,9 @@ function create {
     block_file=$CONF_DIR/$ch_name.block
 
     $COMMAND_PEER channel create \
-        -c $ch_name -f $tx_file \
-        -o $orderer_address --tls --cafile $orderer_tls_file \
-        --outputBlock $block_file
+        -c "$ch_name" -f "$tx_file" \
+        -o "$orderer_address" --tls --cafile "$orderer_tls_file" \
+        --outputBlock "$block_file"
 }
 
 function join {
